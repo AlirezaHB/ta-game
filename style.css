@@ -50,6 +50,7 @@ body{
   -ms-transition: all 5s;
   -o-transition: all 5s;
   transition: all 5s;
+  opacity: 0.8;
 }
 .tong-left-full:hover{
   height: 400px;
@@ -71,6 +72,7 @@ body{
   -ms-transition: all 5s;
   -o-transition: all 5s;
   transition: all 5s;
+  opacity: 0.8;
 }
 .tong-right-full:hover{
   height: 400px;
