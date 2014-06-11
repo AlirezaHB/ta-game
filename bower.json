@@ -1,0 +1,17 @@
+{
+  "name": "TestAsabGame",
+  "version": "1.0.0",
+  "description": "Test asab game",
+  "authors": [
+    "AliMD"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
