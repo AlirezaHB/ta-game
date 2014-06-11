@@ -2,11 +2,12 @@ html,body{
   padding: 0;
   margin: 0;
 }
-body {
+
+body{
   background-color: #000;
 }
 
-.container {
+.container{
   width: 1138px;
   height: 768px;
   position: fixed;
@@ -20,4 +21,21 @@ body {
   right: 0;
   bottom: 0;
   margin: auto;
+}
+
+.tong-left,
+.tong-right{
+  position: absolute;
+  width: 450px;
+  height: 400px;
+  background-repeat: no-repeat;
+  border: 1px solid white;
+}
+
+.tong-left{
+  background-image: url('images/tong_left.jpg');
+}
+
+.tong-right{
+  background-image: url('images/tong_right.jpg');
 }
