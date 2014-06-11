@@ -23,19 +23,55 @@ body{
   margin: auto;
 }
 
-.tong-left,
-.tong-right{
+.tong-left-empty,
+.tong-right-empty,
+.tong-left-full,
+.tong-right-full{
   position: absolute;
   width: 450px;
   height: 400px;
   background-repeat: no-repeat;
-  border: 1px solid white;
+  background-position: left bottom;
 }
 
-.tong-left{
-  background-image: url('images/tong_left.jpg');
+.tong-left-empty,
+.tong-left-full{
+  left: 80px;
+  bottom: 38px;
+}
+.tong-left-empty{
+  background-image: url('images/tong_left_empty.jpg');
+}
+.tong-left-full{
+  background-image: url('images/tong_left_full.jpg');
+  height: 10px;
+  -webkit-transition: all 5s;
+  -moz-transition: all 5s;
+  -ms-transition: all 5s;
+  -o-transition: all 5s;
+  transition: all 5s;
+}
+.tong-left-full:hover{
+  height: 400px;
 }
 
-.tong-right{
-  background-image: url('images/tong_right.jpg');
+.tong-right-empty,
+.tong-right-full{
+  left: 590px;
+  bottom: 38px;
+}
+.tong-right-empty{
+  background-image: url('images/tong_right_empty.jpg');
+}
+.tong-right-full{
+  background-image: url('images/tong_right_full.jpg');
+  height: 10px;
+  -webkit-transition: all 5s;
+  -moz-transition: all 5s;
+  -ms-transition: all 5s;
+  -o-transition: all 5s;
+  transition: all 5s;
+}
+.tong-right-full:hover{
+  height: 400px;
 }
