@@ -3,6 +3,7 @@
 
   config = {
     duration: 90, // zaman bazi be saniye
+    minesPoint: 5, // mizan kam shodan dar soorate khata be %
     fps: 2 // frame per seconds: tedade update dar saniye
   },
 
@@ -41,7 +42,7 @@
         playerWin(1);
         break;
       default:
-        log('key "%s" not defined.', $event.keyCode);
+        //log('key "%s" not defined.', $event.keyCode);
     }
   },
 
@@ -122,12 +123,27 @@
 
   apply = function () {
     $scope.$apply();
-  }
+  },
+
+  minesPoint = function(n){
+    setTongs(n, getTongs(n)-config.minesPoint);
+  },
+
+  mouseClick = function($event){
+    log($event.button);
+    if(timerId){
+      minesPoint($event.button===0 ? 0 : 1);
+    }else{
+      log('Game not running.')
+    }
+    $event.preventDefault();
+  },
 
   mainCtrl = function($skope){
     $scope = $skope;
     $scope.shortkey = shortkey;
     $scope.getToneHeight = getToneHeight;
+    $scope.mouseClick = mouseClick;
   },
 
   init = function(){
