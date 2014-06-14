@@ -16,6 +16,8 @@
     playerWin: 0 // 1(left) or 2(right) or 3(equal)
   },
 
+  $scope,
+
   timerId = 0,
 
   log = function(){
@@ -55,7 +57,11 @@
       }
     }
 
-    over && gameOver();
+    if(over){
+      gameOver();
+    }else{
+      apply();
+    }
   },
 
   gameOver = function(){
@@ -76,7 +82,6 @@
     }else{
       timerId = setInterval(updateGame, 1000/config.fps);
     }
-    
   },
 
   resetGame = function(){
@@ -85,12 +90,14 @@
     setTongs(1, 100);
     stopTimer();
     config.playerWin = 0;
+    apply();
   },
 
   playerWin = function(n){
     log('Player %s win.', n+1);
     vars.playerWin = n+1;
     stopTimer();
+    apply();
   },
 
   stopTimer = function(){
@@ -110,12 +117,18 @@
     return vars.tongs[n].val;
   },
 
-  mainCtrl = function($scope){
+  getToneHeight = function (n) {
+   return (getTongs(n) * config.tongsHeight / 100) +'px';
+  },
+
+  apply = function () {
+    $scope.$apply();
+  }
+
+  mainCtrl = function($skope){
+    $scope = $skope;
     $scope.shortkey = shortkey;
-    $scope.vars = vars;
-    $scope.px = function (n) {
-      return n+'px';
-    };
+    $scope.getToneHeight = getToneHeight;
   },
 
   init = function(){
