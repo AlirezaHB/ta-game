@@ -12,7 +12,8 @@
       {val: 100}
     ],
     step: 100 / (config.duration*config.fps),
-    tongsHeight: 400
+    tongsHeight: 400,
+    playerWin: 0 // 1(left) or 2(right) or 3(equal)
   },
 
   timerId = 0,
@@ -43,32 +44,61 @@
   },
 
   updateGame = function(){
-    for(var val, n=0; n<2; n++){
+    var over, val, n;
+    for(n=0; n<2; n++){
       val = getTongs(n);
       val -= vars.step;
       if(val > 0){
         setTongs(n, val);
       }else{
-        return playerWin(n);
+        over = true;
       }
+    }
+
+    over && gameOver();
+  },
+
+  gameOver = function(){
+    var vals = [getTongs(0), getTongs(1)];
+    if(vals[0] > vals[1]){
+      playerWin(0);
+    }else if(vals[1] > vals[0]){
+      playerWin(1);
+    }else{
+      playerWin(2);
     }
   },
 
   startGame = function(){
     log('Start game.');
-    timerId = setInterval(updateGame, 1000/config.fps);
+    if(timerId){
+      log('Game is runing!');
+    }else{
+      timerId = setInterval(updateGame, 1000/config.fps);
+    }
+    
   },
 
   resetGame = function(){
     log('Reset game.');
     setTongs(0, 100);
     setTongs(1, 100);
-    timerId && clearInterval(timerId);
+    stopTimer();
+    config.playerWin = 0;
   },
 
   playerWin = function(n){
     log('Player %s win.', n+1);
-    timerId && clearInterval(timerId);
+    vars.playerWin = n+1;
+    stopTimer();
+  },
+
+  stopTimer = function(){
+    if(timerId){
+      timerId = clearInterval(timerId);
+    }else{
+      log('Game not runing!')
+    }
   },
 
   setTongs = function(n, newVal){
