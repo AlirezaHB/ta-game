@@ -39,9 +39,11 @@ body{
   left: 80px;
   bottom: 38px;
 }
+
 .tong-left-empty{
   background-image: url('images/tong_left_empty.jpg');
 }
+
 .tong-left-full{
   background-image: url('images/tong_left_full.jpg');
   height: 400px;
@@ -58,9 +60,11 @@ body{
   left: 590px;
   bottom: 38px;
 }
+
 .tong-right-empty{
   background-image: url('images/tong_right_empty.jpg');
 }
+
 .tong-right-full{
   background-image: url('images/tong_right_full.jpg');
   height: 400px;

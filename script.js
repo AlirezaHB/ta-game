@@ -2,8 +2,8 @@
   var
 
   config = {
-    duration: 90, // zaman bazi be saniye
-    fps: 25 // frame per seconds: tedade update dar saniye
+    duration: 5, // zaman bazi be saniye
+    fps: 2 // frame per seconds: tedade update dar saniye
   },
 
   vars = {
@@ -11,7 +11,7 @@
       {val: 100},
       {val: 100}
     ],
-    startTime: null,
+    step: 100 / (config.duration*config.fps),
     tongsHeight: 400
   },
 
@@ -43,12 +43,20 @@
   },
 
   updateGame = function(){
-    //
+    for(var val, n=0; n<2; n++){
+      val = getTongs(n);
+      val -= vars.step;
+      if(val > 0){
+        setTongs(n, val);
+      }else{
+        return playerWin(n);
+      }
+    }
   },
 
   startGame = function(){
     log('Start game.');
-    timerId = setTimeout(updateGame, config.fps);
+    timerId = setInterval(updateGame, 1000/config.fps);
   },
 
   resetGame = function(){
@@ -60,11 +68,16 @@
 
   playerWin = function(n){
     log('Player %s win.', n+1);
+    timerId && clearInterval(timerId);
   },
 
   setTongs = function(n, newVal){
-    log('Change Tong %s: %s to %s', vars.tongs[n].val, newVal)
+    log('Change Tong %s: %s to %s', n, vars.tongs[n].val, newVal)
     vars.tongs[n].val = newVal;
+  },
+
+  getTongs = function(n){
+    return vars.tongs[n].val;
   },
 
   mainCtrl = function($scope){
