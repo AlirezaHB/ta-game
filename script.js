@@ -2,7 +2,8 @@
   var
 
   config = {
-    duration: 90 // zaman bazi be saniye
+    duration: 90, // zaman bazi be saniye
+    fps: 25 // frame per seconds: tedade update dar saniye
   },
 
   vars = {
@@ -12,7 +13,9 @@
     ],
     startTime: null,
     tongsHeight: 400
-  }
+  },
+
+  timerId = 0,
 
   log = function(){
     console.log.apply(console, arguments);
@@ -39,14 +42,20 @@
     }
   },
 
+  updateGame = function(){
+    //
+  },
+
   startGame = function(){
     log('Start game.');
+    timerId = setTimeout(updateGame, config.fps);
   },
 
   resetGame = function(){
     log('Reset game.');
     setTongs(0, 100);
     setTongs(1, 100);
+    timerId && clearInterval(timerId);
   },
 
   playerWin = function(n){
