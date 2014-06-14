@@ -2,7 +2,7 @@
   var
 
   config = {
-    duration: 5, // zaman bazi be saniye
+    duration: 90, // zaman bazi be saniye
     fps: 2 // frame per seconds: tedade update dar saniye
   },
 
@@ -12,7 +12,7 @@
       {val: 100}
     ],
     step: 100 / (config.duration*config.fps),
-    tongsHeight: 400,
+    tongsHeight: 320,
     playerWin: 0 // 1(left) or 2(right) or 3(equal)
   },
 
@@ -57,11 +57,9 @@
       }
     }
 
-    if(over){
-      gameOver();
-    }else{
-      apply();
-    }
+    over && gameOver();
+    
+    apply();
   },
 
   gameOver = function(){
@@ -90,14 +88,12 @@
     setTongs(1, 100);
     stopTimer();
     config.playerWin = 0;
-    apply();
   },
 
   playerWin = function(n){
     log('Player %s win.', n+1);
     vars.playerWin = n+1;
     stopTimer();
-    apply();
   },
 
   stopTimer = function(){
@@ -109,16 +105,19 @@
   },
 
   setTongs = function(n, newVal){
-    log('Change Tong %s: %s to %s', n, vars.tongs[n].val, newVal)
+    //log('Change Tong %s: %s to %s', n, vars.tongs[n].val, newVal)
     vars.tongs[n].val = newVal;
   },
 
   getTongs = function(n){
+    //log('getTongs %s: %s', n, vars.tongs[n].val);
     return vars.tongs[n].val;
   },
 
   getToneHeight = function (n) {
-   return (getTongs(n) * config.tongsHeight / 100) +'px';
+    var retval = getTongs(n-1) * vars.tongsHeight / 100;
+    //log('getToneHeight %s: %s', n, retval);
+    return Math.round(retval) + 'px'
   },
 
   apply = function () {

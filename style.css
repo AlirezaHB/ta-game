@@ -46,13 +46,13 @@ body{
 
 .tong-left-full{
   background-image: url('images/tong_left_full.jpg');
-  height: 400px;
-  -webkit-transition: all 5s;
-  -moz-transition: all 5s;
-  -ms-transition: all 5s;
-  -o-transition: all 5s;
-  transition: all 5s;
-  opacity: 0.8;
+  opacity: 0.9;
+
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  transition: all 500ms linear;
 }
 
 .tong-right-empty,
@@ -67,11 +67,11 @@ body{
 
 .tong-right-full{
   background-image: url('images/tong_right_full.jpg');
-  height: 400px;
-  -webkit-transition: all 5s;
-  -moz-transition: all 5s;
-  -ms-transition: all 5s;
-  -o-transition: all 5s;
-  transition: all 5s;
-  opacity: 0.8;
+  opacity: 0.9;
+
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  transition: all 500ms linear;
 }
