@@ -113,6 +113,9 @@
   mainCtrl = function($scope){
     $scope.shortkey = shortkey;
     $scope.vars = vars;
+    $scope.px = function (n) {
+      return n+'px';
+    };
   },
 
   init = function(){
