@@ -118,6 +118,7 @@
   getToneHeight = function (n) {
     var retval = getTongs(n-1) * vars.tongsHeight / 100;
     //log('getToneHeight %s: %s', n, retval);
+    if(retval<0) retval=0;
     return Math.round(retval) + 'px'
   },
 
@@ -126,29 +127,36 @@
   },
 
   minesPoint = function(n){
-    setTongs(n, getTongs(n)-config.minesPoint);
-  },
-
-  mouseClick = function($event){
-    log($event.button);
     if(timerId){
-      minesPoint($event.button===0 ? 0 : 1);
+      setTongs(n, getTongs(n)-config.minesPoint);
     }else{
       log('Game not running.')
     }
-    $event.preventDefault();
   },
 
   mainCtrl = function($skope){
     $scope = $skope;
     $scope.shortkey = shortkey;
     $scope.getToneHeight = getToneHeight;
-    $scope.mouseClick = mouseClick;
+    $scope.minesPoint = minesPoint;
+  },
+
+  ngRightClick = function($parse) {
+    return function(scope, element, attrs) {
+      var fn = $parse(attrs.ngRightClick);
+      element.bind('contextmenu', function(event) {
+        scope.$apply(function() {
+          event.preventDefault();
+          fn(scope, {$event:event});
+        });
+      });
+    };
   },
 
   init = function(){
     ng
       .module('taGame', [])
+      .directive('ngRightClick', ['$parse', ngRightClick])
       .controller('mainCtrl', ['$scope', mainCtrl]);
   }
   ;
