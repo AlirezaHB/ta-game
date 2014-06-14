@@ -44,16 +44,13 @@ body{
 }
 .tong-left-full{
   background-image: url('images/tong_left_full.jpg');
-  height: 10px;
+  height: 400px;
   -webkit-transition: all 5s;
   -moz-transition: all 5s;
   -ms-transition: all 5s;
   -o-transition: all 5s;
   transition: all 5s;
   opacity: 0.8;
-}
-.tong-left-full:hover{
-  height: 400px;
 }
 
 .tong-right-empty,
@@ -66,14 +63,11 @@ body{
 }
 .tong-right-full{
   background-image: url('images/tong_right_full.jpg');
-  height: 10px;
+  height: 400px;
   -webkit-transition: all 5s;
   -moz-transition: all 5s;
   -ms-transition: all 5s;
   -o-transition: all 5s;
   transition: all 5s;
   opacity: 0.8;
-}
-.tong-right-full:hover{
-  height: 400px;
 }
