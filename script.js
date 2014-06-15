@@ -5,7 +5,8 @@
     duration: 90, // zaman bazi be saniye
     minesPoint: 5, // mizan kam shodan dar soorate khata be %
     minVal: 5, // kamtarin meghdare ab be % baraye tamam shodan bazi ta kami ab tahe tong bemoone
-    fps: 2 // frame per seconds: tedade update dar saniye
+    fps: 2, // frame per seconds: tedade update dar saniye
+    noiseTime: 1000 // kamtarin zaman beyn click ha be ms
   },
 
   vars = {
@@ -16,7 +17,8 @@
     step: (100-config.minVal) / (config.duration*config.fps),
     tongsHeight: 360,
     playerWin: 0, // 1(left) or 2(right) or 3(equal)
-    playerStop: 0 // 0(none) or 1(left) or 2(right) 
+    playerStop: 0, // 0(none) or 1(left) or 2(right)
+    lastClick: [0, 0]
   },
 
   $scope,
@@ -142,11 +144,17 @@
 
   minesPoint = function(n){
     n--;
+    var now = Date.now();
+    if(now-vars.lastClick[n]<config.noiseTime){
+      log('Skip noise %s', n);
+      return false;
+    }
     if(timerId){
       setTongs(n, getTongs(n)-config.minesPoint);
     }else{
       log('Game not running.')
     }
+    vars.lastClick[n] = now;
     beep();
   },
 
