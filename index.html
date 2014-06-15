@@ -11,8 +11,8 @@
   <div class="container">
     <div class="tong-left" ng-style="{height: getToneHeight(1)}"></div>
     <div class="tong-right" ng-style="{height: getToneHeight(2)}"></div>
-    <div class="glow-left" ng-class="{green: vars.playerWin===1, red: vars.playerWin===2, yellow: vars.playerWin===3}"></div>
-    <div class="glow-right" ng-class="{green: vars.playerWin===2, red: vars.playerWin===1, yellow: vars.playerWin===3}"></div>
+    <div class="glow-left" ng-class="{green: vars.playerWin===1, red: vars.playerWin===2, yellow: vars.playerStop===1 || vars.playerWin===3}"></div>
+    <div class="glow-right" ng-class="{green: vars.playerWin===2, red: vars.playerWin===1, yellow: vars.playerStop===2 || vars.playerWin===3}"></div>
   </div>
 </body>
 </html>

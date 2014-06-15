@@ -15,7 +15,8 @@
     ],
     step: (100-config.minVal) / (config.duration*config.fps),
     tongsHeight: 360,
-    playerWin: 0 // 1(left) or 2(right) or 3(equal)
+    playerWin: 0, // 1(left) or 2(right) or 3(equal)
+    playerStop: 0 // 0(none) or 1(left) or 2(right) 
   },
 
   $scope,
@@ -52,31 +53,32 @@
   },
 
   updateGame = function(){
-    var over, val, n;
+    var over=0, val, n;
     for(n=0; n<2; n++){
       val = getTongs(n);
       val -= vars.step;
       if(val > config.minVal){
         setTongs(n, val);
       }else{
-        over = true;
+        over++;
+        stopPlayer(n);
       }
     }
 
-    over && gameOver();
+    over>1 && gameOver();
     
     apply();
   },
 
   gameOver = function(){
-    var vals = [getTongs(0), getTongs(1)];
-    if(vals[0] > vals[1]){
-      playerWin(0);
-    }else if(vals[1] > vals[0]){
-      playerWin(1);
-    }else{
+    //var vals = [getTongs(0), getTongs(1)];
+    //if(vals[0] > vals[1]){
       playerWin(2);
-    }
+    //}else if(vals[1] > vals[0]){
+     //playerWin(1);
+    //}else{
+      //playerWin(2);
+    //}
   },
 
   startGame = function(){
@@ -90,16 +92,21 @@
 
   resetGame = function(){
     log('Reset game.');
+    stopTimer();
     setTongs(0, 100);
     setTongs(1, 100);
-    stopTimer();
     vars.playerWin = 0;
+    vars.playerStop = 0;
   },
 
   playerWin = function(n){
     log('Player %s win.', n+1);
     vars.playerWin = n+1;
     stopTimer();
+  },
+
+  stopPlayer = function(n){
+    vars.playerStop = n+1;
   },
 
   stopTimer = function(){

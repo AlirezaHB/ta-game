@@ -63,6 +63,11 @@ body{
   opacity: 0.4;
 }
 
+.glow-left.yellow,
+.glow-right.yellow{
+  background-image: url('images/glow_yellow.png');
+}
+
 .glow-left.green,
 .glow-right.green{
   background-image: url('images/glow_green.png');
@@ -71,11 +76,6 @@ body{
 .glow-left.red,
 .glow-right.red{
   background-image: url('images/glow_red.png');
-}
-
-.glow-left.yellow,
-.glow-right.yellow{
-  background-image: url('images/glow_yellow.png');
 }
 
 .glow-left{
