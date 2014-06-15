@@ -4,6 +4,7 @@
   config = {
     duration: 90, // zaman bazi be saniye
     minesPoint: 5, // mizan kam shodan dar soorate khata be %
+    minVal: 5, // kamtarin meghdare ab be % baraye tamam shodan bazi ta kami ab tahe tong bemoone
     fps: 2 // frame per seconds: tedade update dar saniye
   },
 
@@ -12,7 +13,7 @@
       {val: 100},
       {val: 100}
     ],
-    step: 100 / (config.duration*config.fps),
+    step: (100-config.minVal) / (config.duration*config.fps),
     tongsHeight: 360,
     playerWin: 0 // 1(left) or 2(right) or 3(equal)
   },
@@ -55,7 +56,7 @@
     for(n=0; n<2; n++){
       val = getTongs(n);
       val -= vars.step;
-      if(val > 0){
+      if(val > config.minVal){
         setTongs(n, val);
       }else{
         over = true;
