@@ -10,8 +10,8 @@
 
   vars = {
     tongs: [
-      {val: 100},
-      {val: 100}
+      {val: 0},
+      {val: 0}
     ],
     step: (100-config.minVal) / (config.duration*config.fps),
     tongsHeight: 360,
@@ -86,6 +86,8 @@
     if(timerId){
       log('Game is runing!');
     }else{
+      setTongs(0, 100);
+      setTongs(1, 100);
       timerId = setInterval(updateGame, 1000/config.fps);
     }
   },
@@ -93,8 +95,8 @@
   resetGame = function(){
     log('Reset game.');
     stopTimer();
-    setTongs(0, 100);
-    setTongs(1, 100);
+    setTongs(0, 0);
+    setTongs(1, 0);
     vars.playerWin = 0;
     vars.playerStop = 0;
   },
