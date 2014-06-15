@@ -7,12 +7,12 @@
   <script type="text/javascript" src="components/angular/angular.min.js"></script>
   <script type="text/javascript" src="script.js"></script>
 </head>
-<body ng-app="taGame" ng-controller="mainCtrl" ng-keydown="shortkey($event)" ng-click="minesPoint(0)" ng-right-click="minesPoint(1)">
+<body ng-app="taGame" ng-controller="mainCtrl" ng-keydown="shortkey($event)" ng-click="minesPoint(1)" ng-right-click="minesPoint(2)">
   <div class="container">
-    <div class="tong-left-empty"></div>
-    <div class="tong-right-empty"></div>
-    <div class="tong-left-full" ng-style="{height: getToneHeight(1)}"></div>
-    <div class="tong-right-full" ng-style="{height: getToneHeight(2)}"></div>
+    <div class="tong-left" ng-style="{height: getToneHeight(1)}"></div>
+    <div class="tong-right" ng-style="{height: getToneHeight(2)}"></div>
+    <div class="glow-left" ng-class="{green: vars.playerWin===1, red: vars.playerWin===2, yellow: vars.playerWin===3}"></div>
+    <div class="glow-right" ng-class="{green: vars.playerWin===2, red: vars.playerWin===1, yellow: vars.playerWin===3}"></div>
   </div>
 </body>
 </html>

@@ -13,7 +13,7 @@
       {val: 100}
     ],
     step: 100 / (config.duration*config.fps),
-    tongsHeight: 320,
+    tongsHeight: 360,
     playerWin: 0 // 1(left) or 2(right) or 3(equal)
   },
 
@@ -40,6 +40,10 @@
       case 50: // 2
       case 98: // num2
         playerWin(1);
+        break;
+      case 51: // 3
+      case 99: // num3
+        playerWin(2);
         break;
       default:
         //log('key "%s" not defined.', $event.keyCode);
@@ -127,6 +131,7 @@
   },
 
   minesPoint = function(n){
+    n--;
     if(timerId){
       setTongs(n, getTongs(n)-config.minesPoint);
     }else{
@@ -136,6 +141,7 @@
 
   mainCtrl = function($skope){
     $scope = $skope;
+    $scope.vars = vars;
     $scope.shortkey = shortkey;
     $scope.getToneHeight = getToneHeight;
     $scope.minesPoint = minesPoint;
