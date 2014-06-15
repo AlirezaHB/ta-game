@@ -93,7 +93,7 @@
     setTongs(0, 100);
     setTongs(1, 100);
     stopTimer();
-    config.playerWin = 0;
+    vars.playerWin = 0;
   },
 
   playerWin = function(n){
