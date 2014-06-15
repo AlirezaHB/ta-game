@@ -147,6 +147,15 @@
     }else{
       log('Game not running.')
     }
+    beep();
+  },
+
+  beep = function () {
+    if(!audioErr.paused){
+      audioErr.pause();
+      audioErr.currentTime = 0;
+    }
+    audioErr.play();
   },
 
   mainCtrl = function($skope){

@@ -87,3 +87,7 @@ body{
   left: 590px;
   bottom: 38px;
 }
+
+#audioErr{
+  display: none;
+}
