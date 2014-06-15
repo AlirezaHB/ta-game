@@ -6,7 +6,8 @@
     minesPoint: 5, // mizan kam shodan dar soorate khata be %
     minVal: 5, // kamtarin meghdare ab be % baraye tamam shodan bazi ta kami ab tahe tong bemoone
     fps: 2, // frame per seconds: tedade update dar saniye
-    noiseTime: 1000 // kamtarin zaman beyn click ha be ms
+    noiseTime: 1000, // kamtarin zaman beyn click ha be ms,
+    errDelay: 500 // modat zamane ghermez mandan tong be ms bad az har khata
   },
 
   vars = {
@@ -18,6 +19,7 @@
     tongsHeight: 360,
     playerWin: 0, // 1(left) or 2(right) or 3(equal)
     playerStop: 0, // 0(none) or 1(left) or 2(right)
+    playerErr: 0, // 0(none) or 1(left) or 2(right)
     lastClick: [0, 0]
   },
 
@@ -156,6 +158,15 @@
     }
     vars.lastClick[n] = now;
     beep();
+    playerErr(n);
+  },
+
+  playerErr = function(n){
+    vars.playerErr = n+1;
+    setTimeout(function(){
+      vars.playerErr = 0;
+      apply();
+    }, config.errDelay);
   },
 
   beep = function () {
